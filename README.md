@@ -9,8 +9,6 @@ This repository contains the solutions to the Fetch OA tasks, including data pro
 - [Q2: Data Analysis and Transformation](#q2-data-analysis-and-transformation)
 - [Q3: Data Quality Analysis](#q3-data-quality-analysis)
 - [How to Run](#how-to-run)
-- [Dependencies](#dependencies)
-- [File Descriptions](#file-descriptions)
 
 ## Overview
 
