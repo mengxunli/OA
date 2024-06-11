@@ -21,7 +21,7 @@ distinct_user_count = df_flattened_users.distinct().count()
 duplicate_user_count = total_user_count - distinct_user_count
 
 print(f"User Count: {total_user_count}, User Distinct Count: {distinct_user_count}")
-print(f"Data Quality Issue 1: There are {duplicate_user_count} duplicate records in users.json, which is about {duplicate_user_count / total_user_count * 100:.2f}%")
+print(f"Data Quality Issue 1: There are {duplicate_user_count} duplicate records in users.json, which is about {duplicate_user_count / total_user_count * 100:.2f}%  \n\n\n")
 
 # Read and transform receipt data
 df_flattened_receipts = read_receipt.read_and_transform_json(json_file_path_receipt)
@@ -32,7 +32,7 @@ total_receipts_count = df_flattened_receipts.count()
 missing_brandcode_percentage = missing_brandcode_count / total_receipts_count * 100
 
 df_flattened_receipts.filter("brandCode is null").select("id","Brandname","brandCode").show(10, False)
-print(f"Data Quality Issue 2: Brandcode missing. {missing_brandcode_percentage:.2f}% of receipts are missing brandCode")
+print(f"Data Quality Issue 2: Brandcode missing. {missing_brandcode_percentage:.2f}% of receipts are missing brandCode.  \n\n\n" )
 
 # Data Quality Issue 3: Comparison of data volume and fill rate over time
 df_flattened_receipts.groupBy("dateScanned") \
@@ -40,7 +40,7 @@ df_flattened_receipts.groupBy("dateScanned") \
     .orderBy("dateScanned", ascending=False) \
     .show(20, False)
 
-print(f"Data Quality Issue 3: Comparing earlier months, the recent month has much less data and a lower fill rate of brandCode.")
+print(f"Data Quality Issue 3: Comparing earlier months, the recent month has much less data and a lower fill rate of brandCode. \n\n\n")
 
 # Data Quality Issue 4: Rejected receipts with same information scanned by the same user
 df_flattened_receipts.groupBy("userId", "Brandname", "partnerItemId", "dateScanned") \
