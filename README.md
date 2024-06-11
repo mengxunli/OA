@@ -30,3 +30,12 @@ Q2 involves analyzing and transforming the data to extract useful insights. The 
 
 ```sh
 spark-submit Q2.py
+```
+
+## Q3 Data Quality Issues. The results can be obtained by running the `Q3.py` script.
+
+### How to Run Q3
+
+```sh
+spark-submit Q3.py
+```
