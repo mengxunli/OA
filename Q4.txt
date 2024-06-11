@@ -1,0 +1,32 @@
+What questions do you have about the data?
+- Why can't the uuid of brands in brands.json be found in receipts.json?
+- Why do more records have partenIDs than brand codes?
+- Taking Miller Lite as an example, why don't receipts recognize its brand while brand.json has it?
+- Are partenIDs more consistently entered or tracked than brand codes? Could there be a business reason for this priority?
+- Could there be issues in the OCR or data extraction process from receipts that lead to unrecognized brands?
+- How often do partenIDs correlate with brand codes? Is there any pattern or logic that explains why one is more frequently filled than the other?
+- Why does the most recent month have many fewer records and many receipts having similar items and scanned by the same user?
+- Have there been any recent updates or changes to the scanning process that might affect the data capture for the most recent month?
+- Could there be a lag in data ingestion, meaning that some records for the most recent month have not yet been processed or uploaded?
+- Are there any known behaviors or events (like promotions or bulk scanning) that could explain why the same user is scanning similar items repeatedly?
+- What exactly do partenIDs and brand codes represent, and how are they supposed to be used?
+
+How Did You Discover the Data Quality Issues?
+- Nulls and missing data: By examining the dataset, particularly the brand information in receipts, numerous nulls and missing data points were observed.
+- Difficulty in joining brand.json with receipts: Attempts to use brand.json to fill in missing brand data in receipts were challenging due to a lack of unique keys for joining.
+
+What Do You Need to Know to Resolve the Data Quality Issues?
+- Identify which fields are critical for your analysis, such as brand name, money spent, and scan date.
+- Establish validation rules and quality checks for these fields.
+- Determine if there are methods to better populate the brand code for each item in the receipt, potentially using enhanced matching algorithms or additional reference data.
+- Explore the feasibility of adding UUIDs from brand.json to receipts to create a more direct link.
+- Understand the impact of duplicates and develop criteria for identifying and removing them. Confirm if it’s safe to drop duplicates.
+
+What Other Information Would You Need to Help You Optimize the Data Assets You're Trying to Create?
+- Clarify what cpg (Consumer Packaged Goods) and rewardsProductPartnerId represent.
+- Understand why multiple brands might share the same rewardsProductPartnerId and how this impacts your data model.
+
+Performance and Scaling Concerns in Production
+- Slow and resource-intensive data flattening: Flattening nested raw data could be resource-intensive. Consider using incremental processing, partitioning data, and leveraging distributed computing frameworks.
+- Repetitive data: Address the issue of repetitive data by implementing deduplication strategies and ensuring that items are uniquely identifiable, even if receipt IDs differ.
+- Data Skewness: Repetitive data can cause data skewness that consumes much more time and resources when doing aggregation or partitioning.
